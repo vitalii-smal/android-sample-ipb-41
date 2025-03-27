@@ -1,6 +1,5 @@
 package com.ipb41.android
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -17,15 +16,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.ipb41.android.ui.theme.AndroidTheme
 
-class MainActivity : ComponentActivity() {
+class SecondActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AndroidTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Students",
+                    Greeting2(
+                        name = "Second Activity",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -35,30 +34,26 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    val context = LocalContext.current
+fun Greeting2(name: String, modifier: Modifier = Modifier) {
+    val context = LocalContext.current;
 
     Column {
         Text(
             text = "Hello $name!",
             modifier = modifier
         )
-        Text(
-            text = "IPB-41",
-        )
         Button(onClick = {
-            val intent = Intent(context, SecondActivity::class.java)
-            context.startActivity(intent)
+            (context as SecondActivity).finish()
         }) {
-            Text(text = "Open Second Activity")
+            Text(text = "close")
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun GreetingPreview2() {
     AndroidTheme {
-        Greeting("Android")
+        Greeting2("Android")
     }
 }
